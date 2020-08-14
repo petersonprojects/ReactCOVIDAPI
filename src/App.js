@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Row,Col,Card, Container} from 'react-bootstrap';
+import {Row, Col, Card, Container} from 'react-bootstrap';
+import Chart from './Chart';
 
 class App extends Component {
 
@@ -24,6 +25,7 @@ class App extends Component {
     this.setState({
       regions: results
     })
+
   }
 
   handleChange = (e) => {
@@ -42,20 +44,20 @@ class App extends Component {
       
     });
 
-    let regions = filtered.map(region => {
+    let regions = filtered.map((region, index)=> {
 
-      return <Col className="col-4">
+      return <Col key={index} className="col-4">
                 <Card className="mb-3">
                 <Card.Body>
                 <Card.Title>{region.state}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{region.cases}</Card.Subtitle>
                 <Card.Text>
 
-                        <p>
+                      
                             Today's cases: {region.todayCases} <br/>
                             Today's deaths: {region.todayDeaths} <br/>
                             Total deaths: {region.deaths} <br/>
-                        </p>
+                        
                   
                 </Card.Text>
                 <Card.Link target="_blank" href="https://corona.lmao.ninja/v2/states">Source</Card.Link>
@@ -65,10 +67,16 @@ class App extends Component {
 
     })
 
+    
+
     return (
       <>
 
         <Container>
+
+          {/* <Chart>
+
+          </Chart> */}
 
           <Row className="justify-content-center mt-5 mb-2">
             <h2>Search coronavirus data by state</h2>
